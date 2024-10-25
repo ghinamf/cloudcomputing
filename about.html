@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Taskbar -->
+  <div class="navbar">
+    <div class="nav-items">
+      <a href="home.html" class="nav-item">Home</a>
+      <a href="#about" class="nav-item">About</a>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="about-section">
+  
+    <!-- Profile Cards Container -->
+    <div id="profile-cards-container" class="profile-cards">
+      <!-- Konten akan ditambahkan secara dinamis melalui JavaScript -->
+    </div>
+  </div>
+
+  <!-- JavaScript untuk memuat dan menampilkan data dari file JSON -->
+  <script>
+    // Fungsi untuk menampilkan data dari JSON ke dalam kartu profil
+    function loadProfiles() {
+      fetch('profiles.json') // Memuat file JSON
+        .then(response => response.json()) // Parsing data JSON
+        .then(data => {
+          const container = document.getElementById('profile-cards-container');
+          container.innerHTML = ''; // Mengosongkan kontainer terlebih dahulu
+
+          // Loop melalui setiap profil dan buat HTML untuk setiap kartu profil
+          data.forEach(profile => {
+            const profileCard = `
+              <div class="profile-card">
+                <img src="${profile.image}" alt="Profile picture of ${profile.name}" class="profile-img">
+                <h2>${profile.name}</h2>
+                <p>${profile.studentId}</p>
+                <p>${profile.email}</p>
+                <p><strong>Instagram:</strong></p>
+                <ul>
+                  <li><a href="${profile.instagramLink}" target="_blank">${profile.instagram}</a></li>
+                </ul>
+              </div>
+            `;
+
+            // Tambahkan kartu profil ke kontainer
+            container.innerHTML += profileCard;
+          });
+        })
+        .catch(error => console.error('Error loading profiles:', error)); // Jika terjadi error
+    }
+
+    // Panggil fungsi ketika halaman dimuat
+    window.onload = loadProfiles;
+  </script>
+</body>
+</html>
