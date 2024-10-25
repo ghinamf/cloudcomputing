@@ -4,68 +4,88 @@ a {
   text-decoration: none; 
 }
 
-a:hover {
-  color: gray; 
-  text-decoration: underline; 
-}
-
 body {
-  background-color: #f7f7f7;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-.navbar {
-  width: 100%;
-  background-color: #000;
-  padding: 15px;
-  text-align: right;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-.nav-items {
+header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 30px;
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  font-size: 1.9em;
+  font-weight: 700;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
   gap: 20px;
 }
 
-.nav-item {
-  color: white;
+header nav ul li a {
   text-decoration: none;
-  font-size: 1.2em;
-  padding: 10px 20px;
-  border-radius: 5px;
+  color: #333;
+  font-family: 'Poppins', sans-serif; /* Secondary font for nav items */
+  font-weight: 400;
+  font-size: 1em;
+  transition: color 0.3s ease;
+  outline: none; 
 }
 
-.nav-item:hover {
-  background-color: #333;
+header nav ul li a:hover {
+  color: #000000; /* Golden color on hover */
 }
+
+@media (max-width: 768px) {
+  header {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  header nav ul {
+      flex-direction: column;
+      gap: 10px;
+  }
+}
+
+.home-link {
+  padding: 8px 15px; /* Add padding to create a box */
+  border: 2px solid #f5f5f5; /* Border color */
+  border-radius: 5px; /* Rounded corners for a soft look */
+  background-color: #797979; /* Background color of the box */
+  color: #f5f5f5; /* Text color */
+  text-decoration: none; /* Remove underline */
+  font-family: 'Poppins', sans-serif; /* Font style */
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  outline: none; 
+}
+
+.home-link:hover {
+  background-color: #f5f5f5; /* Background color on hover */
+  color: #5b5b5b;
+  outline: none; 
+}
+
 
 .about-section {
   margin-top: 80px;
   text-align: center;
   padding: 20px;
+  outline: none; 
 }
 
-.header {
-  margin-bottom: 20px;
-  padding: 100px 50px; 
-  background-color: #ccc;
-  color: white; 
-  text-align: center;
-  border-radius: 10px; 
-}
-
-.header h1 {
-  font-size: 3em;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-}
-
-.header p {
-  font-size: 1.2em;
-  color: white;
+a:hover {
+  color: gray; 
+  text-decoration: underline; 
 }
 
 .profile-cards {
