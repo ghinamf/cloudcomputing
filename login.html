@@ -15,7 +15,7 @@
             box-sizing: border-box;
         }
         body {
-            background-color: #080710;
+            background-color: #ffffff;
             font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
@@ -38,7 +38,7 @@
             border-radius: 50%;
         }
         .shape:first-child {
-            background: linear-gradient(#f2f6ff, #23a2f6);
+            background: linear-gradient(#f2f6ff, #696969);
             left: -80px;
             top: -80px;
         }
@@ -55,14 +55,14 @@
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
             text-align: center;
-            width: 300px;
+            width: 400px;
             z-index: 1;
         }
         .login-container h2 {
             font-size: 32px;
             font-weight: 500;
             line-height: 42px;
-            color: #ffffff;
+            color: #000000;
             text-align: center;
             margin-bottom: 40px;
         }
@@ -71,7 +71,7 @@
             margin-top: 30px;
             font-size: 16px;
             font-weight: 500;
-            color: #ffffff;
+            color: #000000;
         }
         input {
             display: block;
@@ -100,10 +100,24 @@
             cursor: pointer;
         }
         #login-error {
-            color: red;
+            color: rgb(0, 187, 255);
             display: none;
             margin-top: 20px;
         }
+
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            color: #e5e5e5;
+            font-size: 18px;
+        }
+
     </style>
 </head>
 <body>
@@ -118,7 +132,10 @@
             <input type="text" id="username" name="username" required placeholder="Enter your username">
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required placeholder="Enter your password">
+            <div class="password-container">
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+                <span class="password-toggle" onclick="togglePasswordVisibility()">👁️</span>
+            </div>
 
             <button type="submit">Login</button>
             <p id="login-error">Invalid username or password</p>
@@ -126,11 +143,23 @@
     </div>
 
     <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("password");
+            const passwordToggle = document.querySelector(".password-toggle");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                passwordToggle.textContent = "🙈"; 
+            } else {
+                passwordInput.type = "password";
+                passwordToggle.textContent = "👁️"; 
+            }
+        }
+
         document.getElementById("login-form").addEventListener("submit", function(event) {
             event.preventDefault();  // Mencegah reload halaman
             const usernameInput = document.getElementById("username").value;
             const passwordInput = document.getElementById("password").value;
-            
+
             // Mengambil file JSON
             fetch("up.json")
                 .then(response => response.json())

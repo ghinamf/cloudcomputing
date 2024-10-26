@@ -7,37 +7,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Taskbar -->
   <header>
     <h1>ABOUT</h1>
     <nav>
         <ul>
             <li><a href="home.html" class="home-link" class="btn btn-white btn-animated">Home</a></li>
             <li><a href="about.html" class="btn btn-white btn-animated">About</a></li>
+            <li><a href="login.html" class="logout-link">Logout</a></li> 
         </ul>
     </nav>
 </header>
 
-  <!-- Main Container -->
   <div class="about-section">
   
-    <!-- Profile Cards Container -->
-    <div id="profile-cards-container" class="profile-cards">
-      <!-- Konten akan ditambahkan secara dinamis melalui JavaScript -->
-    </div>
+    <div id="profile-cards-container" class="profile-cards"></div>
   </div>
 
-  <!-- JavaScript untuk memuat dan menampilkan data dari file JSON -->
   <script>
-    // Fungsi untuk menampilkan data dari JSON ke dalam kartu profil
     function loadProfiles() {
-      fetch('profiles.json') // Memuat file JSON
-        .then(response => response.json()) // Parsing data JSON
+      fetch('profiles.json') 
+        .then(response => response.json()) 
         .then(data => {
           const container = document.getElementById('profile-cards-container');
-          container.innerHTML = ''; // Mengosongkan kontainer terlebih dahulu
+          container.innerHTML = ''; 
 
-          // Loop melalui setiap profil dan buat HTML untuk setiap kartu profil
           data.forEach(profile => {
             const profileCard = `
               <div class="profile-card">
@@ -52,14 +45,12 @@
               </div>
             `;
 
-            // Tambahkan kartu profil ke kontainer
             container.innerHTML += profileCard;
           });
         })
-        .catch(error => console.error('Error loading profiles:', error)); // Jika terjadi error
+        .catch(error => console.error('Error loading profiles:', error)); 
     }
 
-    // Panggil fungsi ketika halaman dimuat
     window.onload = loadProfiles;
   </script>
 </body>

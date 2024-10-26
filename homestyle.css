@@ -11,7 +11,11 @@ header {
     padding: 0px 30px;
     background-color: #f5f5f5;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+    position: fixed;
+    top: 0;
+    width: 96%;
+    z-index: 1000;
+  }
 
 header h1 {
     font-size: 1.9em;
@@ -21,20 +25,23 @@ header h1 {
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 10px;
 }
 
 header nav ul li a {
+    padding: 8px 15px; 
+    border: 2px solid #f5f5f5; 
     text-decoration: none;
-    color: #333;
-    font-family: 'Poppins', sans-serif; /* Secondary font for nav items */
+    color: #000000;
+    font-family: 'Poppins', sans-serif; 
     font-weight: 400;
     font-size: 1em;
     transition: color 0.3s ease;
+    outline: none; 
 }
 
 header nav ul li a:hover {
-    color: #000000; /* Golden color on hover */
+    color: #797979; 
 }
 
 @media (max-width: 768px) {
@@ -50,20 +57,21 @@ header nav ul li a:hover {
 }
 
 .about-link {
-    padding: 8px 15px; /* Add padding to create a box */
-    border: 2px solid #f5f5f5; /* Border color */
-    border-radius: 5px; /* Rounded corners for a soft look */
-    background-color: #797979; /* Background color of the box */
-    color: #f5f5f5; /* Text color */
-    text-decoration: none; /* Remove underline */
-    font-family: 'Poppins', sans-serif; /* Font style */
-    font-weight: 500;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    padding: 8px 15px; 
+    border: 2px solid #f5f5f5; 
+    border-radius: 5px; 
+    background-color: #797979; 
+    color: #f5f5f5; 
+    text-decoration: none; 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 400;
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 .about-link:hover {
     background-color: #f5f5f5; /* Background color on hover */
-    color: #5b5b5b;
+    color: #000000;
+    outline: none; 
 }
 
 main {
@@ -163,3 +171,20 @@ footer p {
     background-position: center;
     height: 500px;
     }
+
+header nav ul li .logout-link {
+  padding: 8px 15px; 
+  border: 2px solid #f5f5f5; 
+  border-radius: 5px; 
+  color: #000000; 
+  text-decoration: none; 
+  font-family: 'Poppins', sans-serif; 
+  font-weight: 400;
+  transition: background-color 0.3s ease, color 0.3s ease; 
+  
+}
+
+header nav ul li .logout-link:hover {
+  background-color: #f5f5f5; 
+  color: #797979; 
+}
