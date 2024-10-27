@@ -60,7 +60,7 @@ header nav ul li a:hover {
   }
 
   header nav ul {
-      gap: 15px; /* Sesuaikan jarak antar item */
+      gap: 5px; /* Sesuaikan jarak antar item */
   }
 
   header nav ul li a {
