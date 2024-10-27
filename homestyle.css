@@ -15,7 +15,8 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-}
+    flex-wrap: wrap;
+  }
 
 header h1 {
     font-size: 1.9em;
@@ -23,62 +24,65 @@ header h1 {
     margin-left: 20px;
 }
 
-.menu-icon {
-    font-size: 1.5em;
-    margin-right: 20px;
-    cursor: pointer;
-}
-
-#sidebar {
-    position: fixed;
-    right: -250px; /* Mengatur sidebar muncul dari kanan */
-    top: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #797979;
-    color: white;
-    transition: right 0.3s ease; /* Mengubah posisi menggunakan 'right' */
-    padding-top: 80px;
-    z-index: 999;
-}
-
-#sidebar.active {
-    right: 0; /* Sidebar muncul dari sisi kanan */
-}
-
-#sidebar ul {
+header nav ul {
     list-style: none;
-    padding: 0;
-    margin-top: 20px;
+    display: flex;
+    gap: 10px;
 }
 
-#sidebar ul li {
-    padding: 15px;
-    text-align: center;
-}
-
-#sidebar ul li a {
+header nav ul li a {
     text-decoration: none;
-    color: white;
-    font-family: 'Poppins', sans-serif;
+    color: #000000;
+    font-family: 'Poppins', sans-serif; 
     font-weight: 400;
-    font-size: 1.1em;
-    display: block;
+    font-size: 1em;
+    transition: color 0.3s ease;
+    outline: none; 
+    margin-right: 10px;
 }
 
-#sidebar ul li a:hover {
-    background-color: #555;
+header nav ul li a:hover {
+    color: #797979; 
 }
 
-#sidebar ul li:first-child {
-    margin-top: 20px; /* Jarak tambahan khusus item pertama */
+@media (max-width: 768px) {
+    header {
+        flex-direction: row;
+        text-align: right;
+    }
+
+    header nav ul {
+        flex-direction: row;
+        gap: 2px;
+    }
+}
+
+.about-link {
+    padding: 8px 15px; 
+    border: 2px solid #f5f5f5; 
+    border-radius: 5px; 
+    background-color: #797979; 
+    color: #f5f5f5; 
+    text-decoration: none; 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 400;
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.about-link:hover {
+    background-color: #f5f5f5; /* Background color on hover */
+    color: #000000;
+    outline: none; 
+}
+
+main {
+    padding: 40px;
 }
 
 .hero {
     text-align: center;
     background-color: #f0f0f0;
     padding: 100px;
-    margin-top: 60px; /* Offset for fixed header */
 }
 
 .hero-text {
@@ -90,10 +94,70 @@ header h1 {
     margin: 5em 0;
 }
 
-footer {
+.hero-text p {
+    margin-bottom: 20px;
+}
+
+.hero-text .btn {
+    padding: 10px 20px;
+    background-color: #ff5500;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+.features {
+    text-align: center;
+    padding: 40px;
+}
+
+.feature-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.feature-card {
     text-align: center;
     padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.feature-card i {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.feature-card h3 {
+    margin-bottom: 5px;
+}
+
+.gallery {
+    text-align: center;
+    padding: 40px;
+}
+
+.gallery-images {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.gallery-images img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: px;
     background-color: #f5f5f5;
+    padding: 20px;
     font-size: 1em;
     line-height: 1.5;
 }
@@ -107,80 +171,20 @@ footer p {
     background-size: cover;
     background-position: center;
     height: 500px;
+    }
+
+header nav ul li .logout-link {
+  padding: 8px 15px; 
+  border: none; 
+  border-radius: 5px; 
+  color: #000000; 
+  text-decoration: none; 
+  font-family: 'Poppins', sans-serif; 
+  font-weight: 400;
+  transition: background-color 0.3s ease, color 0.3s ease; 
+  
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.5em;
-        margin-left: 10px;
-    }
-
-    .menu-icon {
-        font-size: 1.3em;
-        margin-right: 10px;
-    }
-
-    #sidebar {
-        width: 200px; /* Reduce sidebar width on smaller screens */
-    }
-
-    #sidebar ul li a {
-        font-size: 1em; /* Adjust font size for sidebar links */
-    }
-
-    .hero {
-        padding: 60px 20px;
-    }
-
-    .hero-text h2 {
-        font-size: 1.8em;
-        margin: 3em 0;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.2em;
-        margin-left: 10px;
-    }
-
-    .menu-icon {
-        font-size: 1.2em;
-        margin-right: 5px;
-    }
-
-    #sidebar {
-        width: 180px;
-    }
-
-    #sidebar ul li a {
-        font-size: 0.9em;
-    }
-
-    .hero {
-        padding: 50px 10px;
-    }
-
-    .hero-text h2 {
-        font-size: 1.5em;
-        margin: 2em 0;
-    }
-}
-
-/* Center the footer text on small screens */
-footer p {
-    font-size: 0.9em;
-}
-
-/* Full-width sidebar for small screens */
-@media (max-width: 600px) {
-    #sidebar {
-        width: 100%;
-        right: -100%;
-    }
-
-    #sidebar.active {
-        right: 0;
-    }
+header nav ul li .logout-link:hover { 
+  color: #797979; 
 }

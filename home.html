@@ -9,17 +9,14 @@
 <body>
     <header>
         <h1>HOME PAGE</h1>
-        <div class="menu-icon" onclick="toggleSidebar()">&#x22EE;</div>
+        <nav>
+            <ul>
+                <li><a href="home.html" class="btn btn-white btn-animated">Home</a></li>
+                <li><a href="about.html" class="about-link">About</a></li>
+                <li><a href="login.html" class="logout-link">Logout</a></li> 
+            </ul>
+        </nav>
     </header>
-
-    <aside id="sidebar">
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="login.html">Logout</a></li>
-        </ul>
-    </aside>
-
     <section class="hero">
         <div class="hero-text">
             <h2>Welcome to Our Dashboard Page</h2>
@@ -30,11 +27,5 @@
         <p>Group 01</p>
         <p>Kevin, Dhika, Ghina</p>
     </footer>
-
-    <script>
-        function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("active");
-        }
-    </script>
 </body>
 </html>
