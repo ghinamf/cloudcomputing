@@ -7,13 +7,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <style>
-        *,
-        *:before,
-        *:after {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
         body {
             background-color: #ffffff;
             font-family: 'Poppins', sans-serif;
@@ -23,159 +16,111 @@
             height: 100vh;
             margin: 0;
         }
-        .background {
-            width: 430px;
-            height: 520px;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            left: 50%;
-            top: 50%;
-        }
-        .background .shape {
-            height: 200px;
-            width: 200px;
-            position: absolute;
-            border-radius: 50%;
-        }
-        .shape:first-child {
-            background: linear-gradient(#f2f6ff, #696969);
-            left: -80px;
-            top: -80px;
-        }
-        .shape:last-child {
-            background: linear-gradient(to right, #4e4d4d, #282828);
-            right: -30px;
-            bottom: -80px;
-        }
+
         .login-container {
             padding: 50px 35px;
             background-color: rgba(255, 255, 255, 0.13);
             border-radius: 10px;
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
             text-align: center;
             width: 400px;
-            z-index: 1;
         }
+
         .login-container h2 {
             font-size: 32px;
-            font-weight: 500;
-            line-height: 42px;
-            color: #000000;
-            text-align: center;
+            color: #333;
             margin-bottom: 40px;
         }
-        label {
+
+        .login-container label {
             display: block;
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 16px;
-            font-weight: 500;
-            color: #000000;
+            color: #333;
         }
-        input {
+
+        .login-container input {
             display: block;
-            height: 50px;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.07);
-            border-radius: 3px;
-            padding: 0 10px;
+            padding: 10px;
             margin-top: 8px;
-            font-size: 14px;
-            font-weight: 300;
-            color: #000000;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-        ::placeholder {
-            color: #adadad;
-        }
-        button {
-            margin-top: 50px;
+
+        .login-container button {
+            margin-top: 30px;
             width: 100%;
-            background-color: #ffffff;
-            color: #080710;
+            background-color: #000000;
+            color: white;
             padding: 15px 0;
             font-size: 18px;
-            font-weight: 600;
             border-radius: 5px;
             cursor: pointer;
         }
-        #login-error {
-            color: rgb(255, 0, 0);
-            display: none;
-            margin-top: 20px;
+
+        .login-container p {
+            margin-top: 15px;
         }
 
-        .password-container {
-            position: relative;
-            display: flex;
-            align-items: center;
+        .login-container p a {
+            color: #333;
+            text-decoration: none;
         }
-        .password-toggle {
-            position: absolute;
-            right: 10px;
-            cursor: pointer;
-            color: #e5e5e5;
-            font-size: 18px;
-        }
-
     </style>
 </head>
 <body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form id="login-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required placeholder="Enter your username">
 
-            <label for="password">Password:</label>
-            <div class="password-container">
-                <input type="password" id="password" name="password" required placeholder="Enter your password">
-                <span class="password-toggle" onclick="togglePasswordVisibility()">👁️</span>
-            </div>
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required placeholder="Enter your username">
 
-            <button type="submit">Login</button>
-            <p id="login-error">Invalid username or password</p>
-        </form>
-    </div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required placeholder="Enter your password">
 
-    <script>
-        function togglePasswordVisibility() {
-            const passwordInput = document.getElementById("password");
-            const passwordToggle = document.querySelector(".password-toggle");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                passwordToggle.textContent = "🙈"; 
+        <button type="submit">Login</button>
+        <p id="login-error" style="color:red; display:none;">Invalid username or password</p>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </form>
+</div>
+
+<script>
+    const supabaseUrl = "https://buekaqirxfuezetbncod.supabase.co";
+    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1ZWthcWlyeGZ1ZXpldGJuY29kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQyNTA5MjUsImV4cCI6MjAzOTgyNjkyNX0.3JRjK_iPzlmfxzeNRYhkowOfLHpXhUfa_YBsspqqP84";
+
+    document.getElementById("login-form").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Mencegah reload halaman
+        const usernameInput = document.getElementById("username").value;
+        const passwordInput = document.getElementById("password").value;
+
+        // Ambil data dari tabel 'quiz1_login' di Supabase
+        try {
+            const response = await fetch(`${supabaseUrl}/rest/v1/quiz1_login?username=eq.${usernameInput}&password=eq.${passwordInput}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': supabaseAnonKey,
+                    'Authorization': `Bearer ${supabaseAnonKey}`
+                }
+            });
+
+            const data = await response.json();
+
+            if (data.length > 0) {
+                alert("Login successful!");
+                window.location.href = "home.html"; // Redirect ke halaman home setelah login
             } else {
-                passwordInput.type = "password";
-                passwordToggle.textContent = "👁️"; 
+                document.getElementById("login-error").style.display = "block";
             }
+        } catch (error) {
+            console.error("Error:", error);
+            document.getElementById("login-error").style.display = "block";
         }
+    });
+</script>
 
-        document.getElementById("login-form").addEventListener("submit", function(event) {
-            event.preventDefault();  // Mencegah reload halaman
-            const usernameInput = document.getElementById("username").value;
-            const passwordInput = document.getElementById("password").value;
-
-            // Mengambil file JSON
-            fetch("up.json")
-                .then(response => response.json())
-                .then(data => {
-                    // Mencari kecocokan username dan password
-                    const user = data.find(user => user.username === usernameInput && user.password === passwordInput);
-
-                    if (user) {
-                        alert("Login successful!");
-                        window.location.href = "home.html";  // Redirect ke halaman utama atau dashboard
-                    } else {
-                        document.getElementById("login-error").style.display = "block";  // Menampilkan pesan error
-                    }
-                })
-                .catch(error => console.error("Error loading JSON:", error));
-        });
-    </script>
 </body>
 </html>
