@@ -85,26 +85,24 @@
 
 <script>
     async function registerUser() {
-        // Ambil data dari form
+        
         const username = document.getElementById('username').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        // Konfigurasi API Supabase
+        //Konfigurasi API Supabase
         const url = "https://buekaqirxfuezetbncod.supabase.co";
         const anonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1ZWthcWlyeGZ1ZXpldGJuY29kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQyNTA5MjUsImV4cCI6MjAzOTgyNjkyNX0.3JRjK_iPzlmfxzeNRYhkowOfLHpXhUfa_YBsspqqP84";
         
-        // Endpoint untuk menambahkan data ke tabel quiz1_login di Supabase
+        //Endpoint untuk menambahkan data ke tabel quiz1_login di Supabase
         const endpoint = `${url}/rest/v1/quiz1_login`;
 
-        // Data yang akan dikirim ke Supabase
         const data = {
             username: username,
             email: email,
             password: password
         };
 
-        // Mengirim data ke Supabase
         try {
             const response = await fetch(endpoint, {
                 method: 'POST',

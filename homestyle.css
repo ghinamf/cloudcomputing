@@ -81,7 +81,7 @@ header nav ul li a:hover {
     height: 500px;
     text-align: center;
     display: flex;
-    align-items: center;
+    align-items: center; 
     justify-content: center;
 }
 
