@@ -72,34 +72,19 @@
     </main>
 
     <script>
-        document.querySelector('.submit-btn').addEventListener('click', async (event) => {
-            event.preventDefault(); // Mencegah submit form default
-        
-            // Ambil nilai dari elemen dropdown
-            const city = document.getElementById('city').value;
-            const years = document.getElementById('years').value;
-        
-            try {
-                // Kirim data ke backend API
-                const response = await fetch('http://127.0.0.1:8000/predict', { // Pastikan ini mengarah ke backend Anda
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ city, years })
-                });
-        
-                if (!response.ok) {
-                    throw new Error('Failed to fetch prediction');
-                }
-        
-                const data = await response.json(); // Ambil hasil prediksi dari API
-                alert(`Prediksi Jumlah Penduduk dengan Masalah Mental: ${data.prediction}`);
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan saat memproses prediksi.');
-            }
-        });
-        
-    </script>
+        async function predictYears() {
+          const features = document.getElementById("features").value.split(",").map(Number);
+          const response = await fetch("/api/jawabarat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ features }),
+          });
+          const result = await response.json();
+          alert("Prediction: " + result.prediction);
+        }
+      </script>
     
 
 </body>

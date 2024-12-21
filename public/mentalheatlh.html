@@ -34,5 +34,21 @@
     </main>
     
     <script src="questions.js"></script>
+
+    <script>
+        async function predictMentalHealth() {
+          const features = document.getElementById("features").value.split(",").map(Number);
+          const response = await fetch("/api/mentalhealth", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ features }),
+          });
+          const result = await response.json();
+          alert("Prediction: " + result.prediction);
+        }
+      </script>
+      
 </body>
 </html>

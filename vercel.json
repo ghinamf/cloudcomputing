@@ -1,8 +1,13 @@
 {
-  "rewrites": [
-    {
-      "source": "/login",
-      "destination": "/login.html"
-    }
+  "version": 2,
+  "builds": [
+    { "src": "api/predict.js", "use": "@vercel/node" },    
+    { "src": "public/**/*", "use": "@vercel/static" }      
+  ],
+  "routes": [
+    { "src": "/api/.*", "dest": "api/predict.js" },         
+    { "src": "/login", "dest": "/login.html" },             
+    { "src": "/jawabarat", "dest": "/jawabarat.html" },     
+    { "src": "/mentalhealth", "dest": "/mentalhealth.html" } 
   ]
 }
