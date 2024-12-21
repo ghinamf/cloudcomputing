@@ -1,0 +1,11 @@
+{
+    "name": "mental-health-check",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "vercel dev"
+    },
+    "dependencies": {
+      "@xgboost/xgboost-node": "^1.0.0"
+    }
+  }
+  
