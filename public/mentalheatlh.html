@@ -38,7 +38,7 @@
     <script>
         async function predictMentalHealth() {
           const features = document.getElementById("features").value.split(",").map(Number);
-          const response = await fetch("/api/mentalhealth", {
+          const response = await fetch("/api/predict_mental.py", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -49,6 +49,6 @@
           alert("Prediction: " + result.prediction);
         }
       </script>
-      
+
 </body>
 </html>

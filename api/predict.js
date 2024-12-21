@@ -29,24 +29,75 @@
 //     }
 // };
 
+// const express = require("express");
+// const bodyParser = require("body-parser");
+// const { PythonShell } = require("python-shell");
+
+// const app = express();
+// app.use(bodyParser.json());
+
+// // Endpoint untuk model years_prediction.pkl
+// app.post("/api/jawabarat", (req, res) => {
+//   const features = req.body.features;
+
+//   PythonShell.run(
+//     "api/predict_years.py",
+//     { args: [JSON.stringify(features)] },
+//     (err, results) => {
+//       if (err) {
+//         res.status(500).send({ error: err.message });
+//       } else {
+//         res.send({ prediction: results });
+//       }
+//     }
+//   );
+// });
+
+// // Endpoint untuk model xgboost_model.pkl
+// app.post("/api/mentalhealth", (req, res) => {
+//   const features = req.body.features;
+
+//   PythonShell.run(
+//     "api/predict_mental.py",
+//     { args: [JSON.stringify(features)] },
+//     (err, results) => {
+//       if (err) {
+//         res.status(500).send({ error: err.message });
+//       } else {
+//         res.send({ prediction: results });
+//       }
+//     }
+//   );
+// });
+
+// app.listen(3000, () => {
+//   console.log("API running on http://localhost:3000");
+// });
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const { PythonShell } = require("python-shell");
 
 const app = express();
+
+// Menyajikan file statis dari folder "public"
+app.use(express.static("public"));
+
 app.use(bodyParser.json());
 
 // Endpoint untuk model years_prediction.pkl
 app.post("/api/jawabarat", (req, res) => {
-  const features = req.body.features;
+  console.log("Received data for years prediction:", req.body.features); // Log input
 
   PythonShell.run(
     "api/predict_years.py",
-    { args: [JSON.stringify(features)] },
+    { args: [JSON.stringify(req.body.features)] },
     (err, results) => {
       if (err) {
+        console.error("Error running Python script (years):", err); // Log error Python
         res.status(500).send({ error: err.message });
       } else {
+        console.log("Python script results (years):", results); // Log hasil Python
         res.send({ prediction: results });
       }
     }
@@ -55,15 +106,17 @@ app.post("/api/jawabarat", (req, res) => {
 
 // Endpoint untuk model xgboost_model.pkl
 app.post("/api/mentalhealth", (req, res) => {
-  const features = req.body.features;
+  console.log("Received data for mental health prediction:", req.body.features); // Log input
 
   PythonShell.run(
     "api/predict_mental.py",
-    { args: [JSON.stringify(features)] },
+    { args: [JSON.stringify(req.body.features)] },
     (err, results) => {
       if (err) {
+        console.error("Error running Python script (mental health):", err); // Log error Python
         res.status(500).send({ error: err.message });
       } else {
+        console.log("Python script results (mental health):", results); // Log hasil Python
         res.send({ prediction: results });
       }
     }

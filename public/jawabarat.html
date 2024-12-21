@@ -73,17 +73,19 @@
 
     <script>
         async function predictYears() {
-          const features = document.getElementById("features").value.split(",").map(Number);
-          const response = await fetch("/api/jawabarat", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ features }),
-          });
-          const result = await response.json();
-          alert("Prediction: " + result.prediction);
+            const features = [/* masukkan fitur di sini */];
+            const response = await fetch("/api/jawabarat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ features }),
+            });
+            const result = await response.json();
+            console.log(result); // Tambahkan log untuk debugging
+            alert("Prediction: " + result.prediction);
         }
+        
       </script>
     
 
