@@ -1,0 +1,140 @@
+body {
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 1.9em;
+    font-weight: 700;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    transition: color 0.3s ease;
+    color: #333;
+}
+
+header nav ul li a:hover {
+    color: #5b5b5b;
+}
+
+.btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.home-link {
+    background-color: #ffffff;
+    color: #000;
+    border: 2px solid #ffffff;
+}
+
+.home-link:hover {
+    background-color: #797979;
+    color: #fff;
+}
+
+.about-link {
+    background-color: #ffffff;
+    color: #000;
+    border: 2px solid #ffffff;
+}
+
+.about-link:hover {
+    background-color: #797979;
+    color: #fff;
+}
+
+.logout-link {
+    background-color: #ff0000;
+    color: #fff;
+    border: 2px solid #ffffff;
+}
+
+.logout-link:hover {
+    background-color: #cc0000;
+    color: #fff;
+}
+
+main {
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px; /* Menambahkan margin-bottom agar ada jarak antar box */
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.questions-container {
+    margin: 15px 0;
+}
+
+.questions-container label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.submit-btn {
+    background-color: #737373;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block; 
+    margin: 20px auto 0; 
+}
+
+.submit-btn:hover {
+    background-color: #606060;
+    color: #fff;
+}

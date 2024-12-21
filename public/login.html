@@ -6,6 +6,7 @@
     <title>Group01 Dashboard Login</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    
     <style>
         body {
             background-color: #ffffff;
@@ -70,6 +71,7 @@
         }
     </style>
 </head>
+
 <body>
 
 <div class="login-container">
@@ -88,8 +90,8 @@
 </div>
 
 <script>
-    const supabaseUrl = "https://buekaqirxfuezetbncod.supabase.co";
-    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1ZWthcWlyeGZ1ZXpldGJuY29kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQyNTA5MjUsImV4cCI6MjAzOTgyNjkyNX0.3JRjK_iPzlmfxzeNRYhkowOfLHpXhUfa_YBsspqqP84";
+    const supabaseUrl = "https://ojtuenggseofsgkbcgfg.supabase.co";
+    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qdHVlbmdnc2VvZnNna2JjZ2ZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ3ODAxNzIsImV4cCI6MjA1MDM1NjE3Mn0.f45eP59sBJrqI2jCLyh7t0QlTENOQKFHX5AGKUc4SMQ";
 
     document.getElementById("login-form").addEventListener("submit", async function(event) {
         event.preventDefault(); // Mencegah reload halaman
@@ -120,6 +122,15 @@
             document.getElementById("login-error").style.display = "block";
         }
     });
+</script>
+
+<script>
+window.onload = function() {
+    // Disable right-click to view source
+    document.oncontextmenu = function(e) {
+        e.preventDefault();
+    };
+}
 </script>
 
 </body>

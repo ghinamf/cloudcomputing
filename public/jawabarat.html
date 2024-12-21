@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>West Java Analysis</title>
+    <link rel="stylesheet" href="jawabarat.css">
+</head>
+<body>
+    <header>
+        <h1>West Java Analysis</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html" class="home-link btn">Home</a></li>
+                <li><a href="about.html" class="about-link btn">About</a></li>
+                <li><a href="login.html" class="logout-link btn">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="centered-section">
+            <h2>Pilih Analisis</h2>
+        </section>
+
+        <div class="container">
+            <h3>Pilih Kota</h3>
+            <form>
+                <div class="questions-container">
+                    <select id="city" name="city">
+                        <option value="Bogor">Bogor</option>
+                        <option value="Sukabumi">Sukabumi</option>
+                        <option value="Cianjur">Cianjur</option>
+                        <option value="Bandung">Bandung</option>
+                        <option value="Garut">Garut</option>
+                        <option value="Tasikmalaya">Tasikmalaya</option>
+                        <option value="Ciamis">Ciamis</option>
+                        <option value="Kuningan">Kuningan</option>
+                        <option value="Cirebon">Cirebon</option>
+                        <option value="Majalengka">Majalengka</option>
+                        <option value="Sumedang">Sumedang</option>
+                        <option value="Indramayu">Indramayu</option>
+                        <option value="Subang">Subang</option>
+                        <option value="Purwakarta">Purwakarta</option>
+                        <option value="Karawang">Karawang</option>
+                        <option value="Bekasi">Bekasi</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <div class="container">
+            <h3>Pilih Tahun</h3>
+            <form>
+                <div class="questions-container">
+                    <select id="years" name="years">
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <button type="submit" class="submit-btn">Send</button>
+    </main>
+
+    <script>
+        document.querySelector('.submit-btn').addEventListener('click', async (event) => {
+            event.preventDefault(); // Mencegah submit form default
+        
+            // Ambil nilai dari elemen dropdown
+            const city = document.getElementById('city').value;
+            const years = document.getElementById('years').value;
+        
+            try {
+                // Kirim data ke backend API
+                const response = await fetch('http://127.0.0.1:8000/predict', { // Pastikan ini mengarah ke backend Anda
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ city, years })
+                });
+        
+                if (!response.ok) {
+                    throw new Error('Failed to fetch prediction');
+                }
+        
+                const data = await response.json(); // Ambil hasil prediksi dari API
+                alert(`Prediksi Jumlah Penduduk dengan Masalah Mental: ${data.prediction}`);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat memproses prediksi.');
+            }
+        });
+        
+    </script>
+    
+
+</body>
+</html>
