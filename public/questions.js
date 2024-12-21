@@ -26,22 +26,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("symptom-form").addEventListener("submit", async (event) => {
         event.preventDefault();
-
+    
+        // Collect form data
         const formData = new FormData(event.target);
         const symptoms = Array.from(formData.values()).map(value => parseInt(value));
-
+    
         try {
+            // Send the data to the backend
             const response = await fetch('/api/predict', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ symptoms }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ symptoms }), // Send JSON object
             });
-
+    
             const result = await response.json();
-            alert(`Your mental health prediction: ${result.prediction}`);
+            if (response.ok) {
+                alert(`Your mental health prediction: ${result.prediction}`);
+            } else {
+                console.error(result.error);
+                alert(`Error: ${result.error}`);
+            }
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Network error:", error);
             alert("Error submitting responses.");
         }
     });
+    
 });
