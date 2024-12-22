@@ -20,38 +20,12 @@
 
     <main>
         <section class="centered-section">
-            <h2>Pilih Analisis</h2>
+            <!-- <h2>Pilih Analisis</h2> -->
         </section>
 
         <div class="container">
-            <h3>Pilih Kota</h3>
-            <form>
-                <div class="questions-container">
-                    <select id="city" name="city">
-                        <option value="Bogor">Bogor</option>
-                        <option value="Sukabumi">Sukabumi</option>
-                        <option value="Cianjur">Cianjur</option>
-                        <option value="Bandung">Bandung</option>
-                        <option value="Garut">Garut</option>
-                        <option value="Tasikmalaya">Tasikmalaya</option>
-                        <option value="Ciamis">Ciamis</option>
-                        <option value="Kuningan">Kuningan</option>
-                        <option value="Cirebon">Cirebon</option>
-                        <option value="Majalengka">Majalengka</option>
-                        <option value="Sumedang">Sumedang</option>
-                        <option value="Indramayu">Indramayu</option>
-                        <option value="Subang">Subang</option>
-                        <option value="Purwakarta">Purwakarta</option>
-                        <option value="Karawang">Karawang</option>
-                        <option value="Bekasi">Bekasi</option>
-                    </select>
-                </div>
-            </form>
-        </div>
-
-        <div class="container">
-            <h3>Pilih Tahun</h3>
-            <form>
+            <h3>Choose Year</h3>
+            <form id="prediction-form">
                 <div class="questions-container">
                     <select id="years" name="years">
                         <option value="2023">2023</option>
@@ -65,29 +39,37 @@
                         <option value="2031">2031</option>
                     </select>
                 </div>
-            </form>
+                <button type="submit" class="submit-btn">Send</button>
+            </form>            
         </div>
-
-        <button type="submit" class="submit-btn">Send</button>
     </main>
 
     <script>
-        async function predictYears() {
-            const features = [/* masukkan fitur di sini */];
-            const response = await fetch("/api/jawabarat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ features }),
-            });
-            const result = await response.json();
-            console.log(result); // Tambahkan log untuk debugging
-            alert("Prediction: " + result.prediction);
-        }
+        document.getElementById("prediction-form").addEventListener("submit", async (e) => {
+            e.preventDefault(); // Mencegah reload halaman
+            const year = parseInt(document.getElementById("years").value, 10);
         
-      </script>
-    
-
+            try {
+                const response = await fetch("http://127.0.0.1:8000/api/jawabarat", { // URL FastAPI
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ features: [year] }), // Kirim data tahun sebagai fitur
+                });
+        
+                if (response.ok) {
+                    const result = await response.json();
+                    alert("The Predictions In Year " + year + " is: " + result.prediction); // Notifikasi dengan alert
+                } else {
+                    alert("Error During Prediction Process.");
+                    console.error("Error:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Fetch error:", error);
+                alert("Unable To Connect To Server.");
+            }
+        });        
+    </script>
 </body>
 </html>
