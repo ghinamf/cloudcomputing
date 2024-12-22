@@ -9,10 +9,8 @@ app = FastAPI()
 
 # Load model dari file .pkl
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "yearsprediction.pkl")
-
 try:
-    with open(MODEL_PATH, "rb") as file:
-        model = joblib.load(file)
+    model = joblib.load(MODEL_PATH)
 except FileNotFoundError:
     raise Exception("Model file not found. Please ensure 'yearsprediction.pkl' exists in the same directory as this script.")
 
@@ -20,31 +18,29 @@ except FileNotFoundError:
 class PredictionRequest(BaseModel):
     features: list
 
-# Route untuk endpoint prediksi
+# Endpoint prediksi
 @app.post("/api/jawabarat")
 async def predict(request: PredictionRequest):
     try:
-        # Validasi jumlah fitur
-        if len(request.features) != 1:  # Pastikan hanya satu fitur (tahun)
-            raise HTTPException(status_code=400, detail="Jumlah fitur tidak sesuai. Model membutuhkan satu fitur (year).")
+        print("Received Request:", request.features)  # Log input request
+        if len(request.features) != 1:
+            raise HTTPException(status_code=400, detail="Invalid number of features. Model requires one feature (year).")
 
-        # Format data fitur ke numpy array
         features_array = np.array(request.features).reshape(1, -1)
-
-        # Lakukan prediksi
         prediction = model.predict(features_array)
-        
-        # Berikan respons
-        return {"prediction": int(prediction[0])}  # Pastikan hanya mengirim prediksi pertama
+        print("Prediction Result:", prediction[0])  # Log hasil prediksi
+
+        return {"prediction": int(prediction[0])}
     except Exception as e:
+        print("Error:", str(e))  # Log error
         raise HTTPException(status_code=500, detail=str(e))
 
-# Middleware CORS untuk mendukung domain berbeda
-from fastapi.middleware.cors import CORSMiddleware
 
+# CORS untuk mendukung frontend
+from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Ganti dengan domain frontend jika memungkinkan
+    allow_origins=["*"],  # Anda dapat mengganti dengan domain frontend
     allow_methods=["*"],
     allow_headers=["*"],
 )

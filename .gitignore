@@ -2,6 +2,4 @@
 node_modules/
 venv
 __pycache__
-.vercel
-api\__pycache__
-.vercel
+api/__pycache__
